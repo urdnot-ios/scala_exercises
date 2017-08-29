@@ -5,13 +5,13 @@ package com.urdnot.scalaExercises
   */
 object recursives {
   def countChange(money: Int, coins: List[Int]): Int = {
-    def count(money: Int, change: List[Int]) : Int = {
-      if (change.isEmpty) 0
-      else if (money - change.head == 0) 1
-      else if (money - change.head < 0) 0
-      else countChange(money - change.head, change) + countChange(money, change.tail)
+    def loop(amount: Int, coins: List[Int]): Int = {
+      if (amount == 0) 1
+      else if (amount > 0 && coins.nonEmpty)
+        loop(amount, coins.tail) + loop(amount - coins.head, coins)
+      else 0
     }
-    count(money, coins.sorted)
+    loop(money, coins)
   }
 
   def balance_parens(chars: List[Char]): Boolean = {
@@ -25,6 +25,7 @@ object recursives {
     }
     loop(chars, 0)
   }
+  //find the pivot number of sum. Eg: [2,3,8,4,1]
   def pascal(cols: Int, rows: Int): Int =
     if (rows == 0) {
       1
@@ -33,4 +34,27 @@ object recursives {
     } else {
       pascal(cols - 1, rows - 1) + pascal(cols, rows - 1)
     }
+
+  /**
+    * The first two Fibonacci numbers are 0 and 1. The nth number is always the sum of the previous two—the sequence begins 0, 1, 1, 2, 3, 5. Your definition should use a local tail-recursive function.
+    *
+    * Fn = Fn-1 + Fn-2
+    * Seed values: F0 = 0, F1 = 1
+    *
+    * @param n
+    * @return
+    */
+  def fibonacci(n: Int) = {
+    def loop(n: Int, fn1: Int = 0, fn2: Int = 1): Int = {
+      n match {
+        case 0 => fn1
+        case _ => loop(n - 1, fn2, fn1 + fn2)
+      }
+    }
+    loop(n)
+  }
+  def lcm(a: BigInt, b: BigInt): BigInt = a * b / a.gcd(b)
+  def gcd(a: Int,b: Int): Int = {
+    if(b == 0) a else gcd(b, a % b)
+  }
 }

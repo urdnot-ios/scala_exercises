@@ -24,4 +24,17 @@ object runExercises extends App {
   println(balance_parens("(if (zero? x) max (/ 1 x))".toList))
   print(":-)  ")
   println(balance_parens(":-)".toList))
+
+  println("fib: ")
+  /*
+  { 0, 0 }, { 1, 1 }, { 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 5 }, { 6, 8 }
+   */
+  println("0 = 1: " + fibonacci(0))
+  println("1 = 1: " + fibonacci(1))
+  println("2 = 2: " + fibonacci(2))
+  println("3 = 3: " + fibonacci(3))
+  println("4 = 5: " + fibonacci(4))
+  println("5 = 6: " + fibonacci(5))
+  println("6 = 13: " + fibonacci(6))
+  println("10 = 55: " + fibonacci(10))
 }
